@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学术问答智能体</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部标题栏 -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-info">
+                <h1>🤖 学术问答智能体</h1>
+                <p>AI驱动的研究助手，高效收集和分析信息</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 侧边栏：会话列表 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title-group">
+                    <span class="sidebar-icon">💬</span>
+                    <h2>聊天会话</h2>
+                </div>
+                <button id="newSessionBtn" class="btn btn-new-chat">+ 新会话</button>
+            </div>
+            <div id="sessionList" class="session-list">
+                <div class="loading">加载中...</div>
+            </div>
+            
+            <!-- 后端状态显示 -->
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span id="statusDot" class="status-dot"></span>
+                    <span id="statusText" class="status-text">检测中...</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 主区域：会话详情 -->
+        <main class="main-content">
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">📝</div>
+                <p>选择或创建一个会话开始对话</p>
+            </div>
+            
+            <div id="sessionDetail" class="session-detail" style="display: none;">
+                <div class="session-header">
+                    <div class="header-title">
+                        <h2 id="sessionTitle">会话标题</h2>
+                        <span id="sessionTime" class="session-time"></span>
+                    </div>
+                    <div class="header-actions">
+                        <button id="editTitleBtn" class="btn-icon-action" title="编辑标题">✏️</button>
+                        <button id="deleteSessionBtn" class="btn-icon-action btn-danger" title="删除会话">🗑️</button>
+                    </div>
+                </div>
+
+                <div id="editTitleForm" class="edit-form" style="display: none;">
+                    <input type="text" id="titleInput" class="input-text" placeholder="输入新标题">
+                    <button id="saveTitleBtn" class="btn-form">保存</button>
+                    <button id="cancelEditBtn" class="btn-form btn-cancel">取消</button>
+                </div>
+
+                <div id="messagesList" class="messages-list">
+                    <p class="empty-messages">暂无消息</p>
+                </div>
+
+                <!-- 消息输入框 -->
+                <div class="message-input-area">
+                    <textarea id="messageInput" class="message-input" placeholder="输入消息...（Shift+Enter换行）"></textarea>
+                    <button id="sendBtn" class="btn-send">发送</button>
+                </div>
+
+                <div class="session-meta-panel">
+                    <!-- 用户角色选择 -->
+                    <div class="role-selector-bar">
+                        <div class="role-label">角色</div>
+                        <select id="roleSelect" class="role-select">
+                            <option value="user">用户</option>
+                            <option value="assistant">助手</option>
+                            <option value="system">系统</option>
+                            <option value="tool">工具</option>
+                        </select>
+                    </div>
+
+                    <!-- 会话信息栏 -->
+                    <div class="session-info-bar">
+                        <div class="info-group">
+                            <label>会话ID</label>
+                            <span id="infoSessionId" class="info-value">-</span>
+                        </div>
+                        <div class="info-group">
+                            <label>创建时间</label>
+                            <span id="infoCreatedAt" class="info-value">-</span>
+                        </div>
+                        <div class="info-group">
+                            <label>更新时间</label>
+                            <span id="infoUpdatedAt" class="info-value">-</span>
+                        </div>
+                        <div class="info-group">
+                            <label>消息数量</label>
+                            <span id="infoMessageCount" class="info-value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
